@@ -1,13 +1,15 @@
-document.querySelector("#salvar").addEventListener("click", Cadastrar)
+document.querySelector("#salvar").addEventListener("click", cadastrar)
 
-function Cadastrar() {
+function cadastrar() {
     const titulo = document.querySelector("#titulo").value
-    const pontos = document.querySelector("#pontos").value
+    const preco = document.querySelector("#preco").value
     const categoria = document.querySelector("#categoria").value
+    const descricao = document.querySelector("#descricao").value
 
     const tarefa = {
         titulo,
-        pontos,
+        preco,
+        descricao,
         categoria
     }
 
@@ -27,15 +29,15 @@ function criarCard(tarefa) {
                 ${tarefa.titulo}
             </div>
             <div class="card-body">
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text">${tarefa.descricao}</p>
                 <p class="card-text">${tarefa.categoria}</p>
-                <span class="badge text-bg-warning">${tarefa.pontos}pt</span>
+                <span class="badge text-bg-warning">${tarefa.preco}$</span>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-success" title="marcar como concluída">
+                <a href="#" class="btn btn-success" title="salvar">
                     <i class="bi bi-check2"></i>
                 </a>
-                <a href="#" onClick="apagar(this)" class="btn btn-danger" title="apagar tarefa">
+                <a href="#" onClick="apagar(this)" class="btn btn-danger" title="apagar produto">
                     <i class="bi bi-trash3"></i>
                 </a>
             </div> <!-- card footer -->
