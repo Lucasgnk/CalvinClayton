@@ -1,10 +1,25 @@
 document.querySelector("#salvar").addEventListener("click", cadastrar)
 
+let tarefas = []
+
+window.addEventListener("load", () => {
+    tarefas = JSON.parse( localStorage.getItem("tarefas") ) || []
+    atualizar()
+})
+
+function atualizar(){
+    document.querySelector("#tarefas").innerHTML = ""
+    tarefas.forEach(tarefa => 
+        document.querySelector("#tarefas").innerHTML += criarCard(tarefa))
+        
+}
+
 function cadastrar() {
     const titulo = document.querySelector("#titulo").value
     const preco = document.querySelector("#preco").value
     const categoria = document.querySelector("#categoria").value
     const descricao = document.querySelector("#descricao").value
+    const modal = bootstrap.Modal.getInstance(document.querySelector("#exampleModal"))
 
     const tarefa = {
         titulo,
@@ -12,6 +27,12 @@ function cadastrar() {
         descricao,
         categoria
     }
+
+    tarefas.push(tarefa)
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+
+    atualizar()
+    modal.hide()
 
     document.querySelector("#tarefas")
         .innerHTML += criarCard(tarefa)
